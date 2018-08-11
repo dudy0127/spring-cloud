@@ -1,0 +1,15 @@
+server:
+  port: 8700
+spring:
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: admin-server
+        service-name: admin-server
+      host: localhost
+      port: 8500
+
+  application:
+    name: admin-sever

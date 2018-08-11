@@ -1,0 +1,27 @@
+server:
+  port: 8503
+spring:
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /home
+        health-check-interval: 10s
+        instance-id: consul-client00
+      host: localhost
+      port: 8500
+
+  application:
+    name: consul-client00
+  boot:
+    admin:
+      client:
+        url: http://localhost:8700
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+      health:
+        show-details: ALWAYS
