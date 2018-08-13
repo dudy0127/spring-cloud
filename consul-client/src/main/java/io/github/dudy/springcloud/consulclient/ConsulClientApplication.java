@@ -1,24 +1,29 @@
 package io.github.dudy.springcloud.consulclient;
 
+import io.github.dudy.springcloud.consulclient.remote.RemoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @RestController
-
+@EnableFeignClients
 public class ConsulClientApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ConsulClientApplication.class, args);
 	}
 
+	@Autowired
+	private RemoteService remoteService;
 
 	@Autowired
 	private LoadBalancerClient loadBalancer;
@@ -45,5 +50,10 @@ public class ConsulClientApplication {
 	@RequestMapping("/home")
 	public String home() {
 		return "hi ,i'm consul client";
+	}
+
+	@RequestMapping("/api")
+	public String api(){
+		return  remoteService.api("test feign");
 	}
 }
