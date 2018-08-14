@@ -73,5 +73,5 @@ atlassian-ide-plugin.xml
 # consul binary package
 consul
 nohup.out
-demo/.gitignore
-demo/.mvn/*
+*/.gitignore
+*/.mvn/*

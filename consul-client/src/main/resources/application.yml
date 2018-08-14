@@ -4,19 +4,22 @@ spring:
   cloud:
     consul:
       discovery:
-        health-check-path: /home
+        health-check-path: /actuator/health
         health-check-interval: 10s
-        instance-id: consul-client00
+        #instance-id: consul-client00
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
       host: localhost
       port: 8500
 
   application:
-    name: consul-client00
+    name: consul-client
   boot:
     admin:
       client:
         url: http://localhost:8700
 
+# spring admin
 management:
   endpoints:
     web:
@@ -25,3 +28,16 @@ management:
   endpoint:
       health:
         show-details: ALWAYS
+
+feign:
+  hystrix:
+    enabled: true
+
+#
+#turbine:
+#  aggregator:
+#    cluster-config: default     #需要监控的服务集群名
+#  app-config: consul-client00,consul-server    #需要监控的服务名
+#  cluster-name-expression: new String('default')
+#  instanceUrlSuffix:
+#      default: actuator/hystrix.stream    #key是clusterConfig集群的名字，value是hystrix监控的后缀，springboot2.0为actuator/hystrix.stream

@@ -26,7 +26,7 @@ pom.xml
 @FeignClient("consul-server")
 public interface RemoteService {
 
-    @RequestMapping(value = "api",method = RequestMethod.GET) // 貌似不能使用 @GetMaping这种注解，method也需要写
+    @RequestMapping(value = "api",method = RequestMethod.GET) 
     String api(@RequestParam("api")String api);
 }
 

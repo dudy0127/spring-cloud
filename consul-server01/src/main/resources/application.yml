@@ -4,9 +4,9 @@ spring:
   cloud:
     consul:
       discovery:
-        health-check-path: /home
+        health-check-path: /actuator/health
         health-check-interval: 10s
-        instance-id: consul-server01
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
         service-name: consul-server
       host: localhost
       port: 8500
