@@ -24,6 +24,7 @@
         <module>consul-client</module>
         <module>admin-server</module>
         <module>hystrix-dashboard-turbine</module>
+        <module>zuul-client</module>
     </modules>
 
     <properties>

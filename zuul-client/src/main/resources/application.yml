@@ -1,0 +1,28 @@
+server:
+  port: 8506
+spring:
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        #instance-id: consul-client00
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+      host: localhost
+      port: 8500
+
+  application:
+    name: zuul-client
+zuul:
+  routes:
+    clientapi:
+      path: /consul-client/**
+      serviceId: consul-client
+    serverapi:
+      path: /consul-server/**
+      serviceId: consul-server
+#    turbineapi:
+#      path: /turbine/**
+#      serviceId: hystrix-turbine
+

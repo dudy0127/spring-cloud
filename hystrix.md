@@ -1,4 +1,4 @@
-### Hystrix 熔断器
+### 1.Hystrix 熔断器
 
 分布式系统中服务与服务之间依赖错综复杂，当某个服务出现故障时，会导致调用其服务的其他服务出现远程调度的线程阻塞。
 **这也意味着你要把处理错误的代码当成正常功能的代码来处理**
@@ -46,10 +46,11 @@ public class HystrixClientFallback implements RemoteService{
 ```
 
 启动 consul-server,consul-client ,访问:http://localhost:8053/api/ 
+
 停掉 consul-server 在访问 得到   Hystrix fallback ... 
 
 
-####  使用tuibine 聚合监控
+####  2.使用tuibine 聚合监控
 
 Hystrix Dashboard 监控服务的熔断器情况时，最多只有一个Hystrix Dashboard 主页，服务数量很多时，很不方便。
 
@@ -160,10 +161,11 @@ http://localhost:8504/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8504%2Ftur
 只启动两个 client 端
 
 java -jar target/consul-client-0.0.1-SNAPSHOT.jar --server.port=8503
+
 java -jar target/consul-client-0.0.1-SNAPSHOT.jar --server.port=8505
 
 访问http://localhost:8505/api/ 或者 http://localhost:8503/api/  都行，多访问几次
 
-就会得到
+就会得到,其中右下角4代表失败次数，Hosts=2代表集群有2个应用
 ![turbine](img/turbine.png)
 
