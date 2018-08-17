@@ -71,7 +71,5 @@ atlassian-ide-plugin.xml
 .nbattrs
 
 # consul binary package
-consul
-nohup.out
 */.gitignore
 */.mvn/*
