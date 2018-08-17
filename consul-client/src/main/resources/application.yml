@@ -1,5 +1,5 @@
 server:
-  port: 8505
+  port: 8503
 spring:
   cloud:
     consul:
@@ -18,6 +18,8 @@ spring:
     admin:
       client:
         url: http://localhost:8700
+  zipkin:
+    base-url: http://localhost:9411
 
 # spring admin
 management:
@@ -32,6 +34,8 @@ management:
 feign:
   hystrix:
     enabled: true
+
+
 
 #
 #turbine:
