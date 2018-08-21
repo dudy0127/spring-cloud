@@ -99,7 +99,7 @@ https://www.consul.io/intro/getting-started/install.html
 安全启动后默认访问地址: http://localhost:8500/
 
 
-##### 2. Docker compose 
+##### 1.3 Docker compose 
 
 docker dev 模式启动:
 
@@ -108,11 +108,10 @@ $ docker run -d --name=dev-consul -p 8500:8500 -e CONSUL_BIND_INTERFACE=eth0 con
 
 
 https://hub.docker.com/r/library/consul/  docker运行consul
-https://www.jianshu.com/p/f8746b81d65d 一个consul使用的详细介绍
 https://github.com/emdem/consul-cluster-compose 单机consul-cluster docker compose 脚本，使用了7个实例
 https://github.com/hashicorp/consul/blob/master/demo/docker-compose-cluster/docker-compose.yml 官方提供集群DEMO
 
-##### 2.1 构建启动
+###### 1.3.1 构建启动
 
 我们使用官方集群demo启动
 
@@ -140,12 +139,68 @@ Starting consul_consul-server-1_1         ... done
 
 可以看到consul 有3个节点。
 
+https://www.jianshu.com/p/f8746b81d65d 一个consul使用的详细介绍
+
 http://www.ymq.io/2017/11/26/spring-cloud-consul/  (推荐)更详细的可以参考这个
 
 
 
-##### 
+#### 2.SpringCloud 结合 consul使用
+
+创建consul-client工程,这里推荐使用 https://start.spring.io 创建工程，因为SB1.x 和 SB2.x 在依赖方面改动还是比较大的，如果通过网上博客那样添加出出现各种各样的问题 o(╥﹏╥)o，IDEA工具自带。
 
 
 
+在Cloud Discovery中选择 Consul Discovery,同时选择 监控 actuator，用来做健康检查，后边SpringBoot Admin 做监控也会用到。
+
+pom.xml 
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+</dependency>
+
+```
+application.java 中添加 @EnableDiscoveryClient注解
+
+application.yml 文件
+
+```yml
+server:
+  port: 8503
+spring:
+  cloud:
+    consul:
+      discovery:
+        health-check-path: /actuator/health   # 健康健康路径，也可以自己写
+        health-check-interval: 10s            # 检测轮训时间 1m 代码1分钟
+        #instance-id: consul-client00 实例ID，唯一值
+        instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+      host: localhost
+      port: 8500
+
+  application:
+    name: consul-client
+```
+
+启动服务实例:
+
+在 consul-client 根目录下执行 mvn clean package ,我们这里启动两个client 实例 
+```bash
+$ nohup  java -jar target/consul-client-0.0.1-SNAPSHOT.jar  > /dev/null 2>&1 & 
+$ nohup  java -jar target/consul-client-0.0.1-SNAPSHOT.jar --server.port=8503  > /dev/null 2>&1 & 
+
+```
+查看 consul UI 控制台 
+
+![mage-20180821101351](../img/consul-client.png)
+
+![mage-20180821101503](../img/consul-client-instance.png)
 
