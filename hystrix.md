@@ -150,7 +150,7 @@ turbine:
 
 http://localhost:8504/hystrix
 可以看到
-![hystrix](img/hystrix.png)
+![hystrix](doc/img/hystrix.png)
 
 填写
 http://localhost:8504/turbine.stream ，monitor，开始进去可能没有数据
@@ -167,5 +167,5 @@ java -jar target/consul-client-0.0.1-SNAPSHOT.jar --server.port=8505
 访问http://localhost:8505/api/ 或者 http://localhost:8503/api/  都行，多访问几次
 
 就会得到,其中右下角4代表失败次数，Hosts=2代表集群有2个应用
-![turbine](img/turbine.png)
+![turbine](doc/img/turbine.png)
 
