@@ -108,8 +108,12 @@ $ docker run -d --name=dev-consul -p 8500:8500 -e CONSUL_BIND_INTERFACE=eth0 con
 
 
 https://hub.docker.com/r/library/consul/  docker运行consul
+
 https://github.com/emdem/consul-cluster-compose 单机consul-cluster docker compose 脚本，使用了7个实例
+
 https://github.com/hashicorp/consul/blob/master/demo/docker-compose-cluster/docker-compose.yml 官方提供集群DEMO
+
+
 
 ###### 1.3.1 构建启动
 
