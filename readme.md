@@ -10,7 +10,7 @@ demo 是为了方便学习各种组织初始化的所有组件依赖，因为 Sp
 依赖出错会报各种稀奇古怪的错误。
 
 
-[Consul](doc/consul/consul.md): 服务注册与发现
+[Consul](doc/consul/01_consul.md): 服务注册与发现
 
 [Hystrix&trubine](hystrix.md): 熔断&集群监控
 

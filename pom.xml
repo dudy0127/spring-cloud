@@ -19,6 +19,7 @@
     </parent>
 
     <modules>
+        <module>consul-config</module>
         <module>consul-server</module>
         <module>consul-server01</module>
         <module>consul-client</module>
@@ -26,6 +27,7 @@
         <module>hystrix-dashboard-turbine</module>
         <module>zuul-client</module>
         <module>zipkin-server</module>
+
     </modules>
 
     <properties>

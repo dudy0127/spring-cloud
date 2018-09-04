@@ -1,11 +1,10 @@
 spring:
   profiles:
     active: dev
-
-
 ---
 spring:
   profiles: dev
+
   cloud:
     consul:
       host: localhost
@@ -17,16 +16,20 @@ spring:
         #instance-id: consul-client00
         instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
         prefer-ip-address: true
-      config:
-        enabled: true
-        prefix: config
-        name: jarvis
-        format: YAML
-        watch:
-          enabled: false
+
+    config:
+      server:
+        git:
+          uri: https://github.com/dudy0127/config-repo
+          search-paths: '{application}'
 
   application:
     name: consul-config
+  security:
+    user:
+      password: dudy
+      name: root
+
 
 
 # spring admin
@@ -38,14 +41,3 @@ management:
   endpoint:
       health:
         show-details: ALWAYS
-
-
-
-#
-#turbine:
-#  aggregator:
-#    cluster-config: default     #需要监控的服务集群名
-#  app-config: consul-client00,consul-server    #需要监控的服务名
-#  cluster-name-expression: new String('default')
-#  instanceUrlSuffix:
-#      default: actuator/hystrix.stream    #key是clusterConfig集群的名字，value是hystrix监控的后缀，springboot2.0为actuator/hystrix.stream

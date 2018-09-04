@@ -25,7 +25,7 @@
 		<keycloak.version>4.2.0.Final</keycloak.version>
 		<spring-boot-admin.version>2.0.2</spring-boot-admin.version>
 		<spring-cloud-task.version>2.0.0.RELEASE</spring-cloud-task.version>
-		<spring-cloud.version>Finchley.SR1</spring-cloud.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<spring-statemachine.version>2.0.1.RELEASE</spring-statemachine.version>
 		<vaadin.version>8.4.4</vaadin.version>
 	</properties>
