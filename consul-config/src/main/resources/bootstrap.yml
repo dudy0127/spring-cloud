@@ -1,6 +1,9 @@
 spring:
   profiles:
     active: dev
+
+foo:
+  bar
 ---
 spring:
   profiles: dev

@@ -1,5 +1,6 @@
 ### SpringBoot 2.0.4&SpringCloud F版本(-) Consul 服务注册和发现
 
+[TOC]
 
 #### 0.为什么需要服务注册和发现
 

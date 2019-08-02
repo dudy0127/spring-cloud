@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: stream-source
+
+  cloud:
+    consul:
+      host: ${consul.host:localhost}
+      port: ${consul.port:8500}
+      discovery:
+        prefer-ip-address: true
+      config:
+        enabled: true
+        format: yaml
+        default-context: ${spring.application.name}
+
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9092
+      bindings:
+        greetings-in:
+          destination: greetings
+          contentType: application/json
+        greetings-out:
+          destination: greetings
+          contentType: application/json
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone:
+      Asia/Shanghai
+
+logging:
+  level:
+    root: INFO
+  file: logs/${spring.application.name}.log
+  
+management:
+  endpoint:
+    health:
+      show-details: always 
+
+server:
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/javascript,text/css,text/xml,text/plain
+    min-response-size: 2048
+  port: 8007
+
