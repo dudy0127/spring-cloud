@@ -24,6 +24,7 @@ spring:
         greetings-out:
           destination: greetings
           contentType: application/json
+      default-binder: kafka
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone:
