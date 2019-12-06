@@ -1,7 +1,7 @@
-package io.github.com.dudy.springcloud.streamsink.service;
+package io.github.dudy.springcloud.stream.source.service;
 
-import io.github.com.dudy.springcloud.streamsink.model.Greetings;
-import io.github.com.dudy.springcloud.streamsink.stream.GreetingsStreams;
+import io.github.dudy.springcloud.stream.source.model.Greetings;
+import io.github.dudy.springcloud.stream.source.stream.GreetingsStreams;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;

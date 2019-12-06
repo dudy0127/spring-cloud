@@ -18,11 +18,8 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        greetings-in:
-          destination: greetings
-          contentType: application/json
-        greetings-out:
-          destination: greetings
+        goods-out:
+          destination: goods
           contentType: application/json
       default-binder: kafka
   jackson:

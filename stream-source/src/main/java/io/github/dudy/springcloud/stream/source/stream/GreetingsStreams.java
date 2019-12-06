@@ -1,16 +1,10 @@
 package io.github.dudy.springcloud.stream.source.stream;
 
-import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.SubscribableChannel;
 
 public interface GreetingsStreams {
-    String INPUT = "greetings-in";
-    String OUTPUT = "greetings-out";
-
-    @Input(INPUT)
-    SubscribableChannel inboundGreetings();
+    String OUTPUT = "goods-out";
 
     @Output(OUTPUT)
     MessageChannel outboundGreetings();

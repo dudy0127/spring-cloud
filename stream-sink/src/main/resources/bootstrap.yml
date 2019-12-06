@@ -18,12 +18,10 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        greetings-in:
-          destination: greetings
+        goods-in:
+          destination: goods
           contentType: application/json
-        greetings-out:
-          destination: greetings
-          contentType: application/json
+          group: finance
       default-binder: kafka
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss

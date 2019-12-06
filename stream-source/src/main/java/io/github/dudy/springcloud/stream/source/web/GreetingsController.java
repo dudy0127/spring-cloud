@@ -1,7 +1,7 @@
-package io.github.com.dudy.springcloud.streamsink.web;
+package io.github.dudy.springcloud.stream.source.web;
 
-import io.github.com.dudy.springcloud.streamsink.model.Greetings;
-import io.github.com.dudy.springcloud.streamsink.service.GreetingsService;
+import io.github.dudy.springcloud.stream.source.model.Greetings;
+import io.github.dudy.springcloud.stream.source.service.GreetingsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
